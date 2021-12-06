@@ -64,6 +64,7 @@ public class Transaction {
 
     public void setShares(double shares) {
         this.shares = shares;
+        this.updateCostPerShare();
     }
 
     public String getCurrency() {
@@ -86,7 +87,7 @@ public class Transaction {
         return this.costPerShare;
     }
 
-    public void updateCostPerShare() {
+    private void updateCostPerShare() {
         this.costPerShare = this.totalAmount/this.shares;
     }
 
@@ -96,5 +97,6 @@ public class Transaction {
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
+        this.updateCostPerShare();
     }
 }
