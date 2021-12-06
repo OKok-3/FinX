@@ -31,6 +31,10 @@ public class Account {
         return this.transactions;
     }
 
+    public void deleteTransaction(Transaction t) {
+        this.transactions.remove(t);
+    }
+
     public void addTransaction(Transaction t) {
         this.transactions.add(t);
     }
