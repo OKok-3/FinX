@@ -1,4 +1,4 @@
-package tg.finx.backend.tests.entity;
+package tg.finx.test.backend.entitytests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
