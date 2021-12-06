@@ -29,6 +29,13 @@ class AccountTest {
     }
 
     @Test
+    void deleteTransaction() {
+        account.addTransaction(t);
+        account.deleteTransaction(t);
+        assertEquals(0, account.getTransactions().size());
+    }
+
+    @Test
     void isMargin() {
         assertFalse(account.isMargin());
     }
