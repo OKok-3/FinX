@@ -9,6 +9,7 @@ public class Transaction {
     private double shares;
     private String currency;
     private double fxRate;
+    private double fee;
     private double costPerShare;
     private double totalAmount;
 
@@ -23,7 +24,7 @@ public class Transaction {
      * @param fxRate      foreign exchange rate of transaction (if local currency, set to 1.0)
      * @param totalAmount total amount transacted
      */
-    public Transaction(LocalDateTime time, String type, String ticker, double shares, String currency, double fxRate, double totalAmount) {
+    public Transaction(LocalDateTime time, String type, String ticker, double shares, String currency, double fxRate, double fee, double totalAmount) {
         this.time = time;
         this.type = type;
         this.ticker = ticker;
@@ -31,6 +32,7 @@ public class Transaction {
         this.currency = currency;
         this.costPerShare = totalAmount / shares;
         this.fxRate = fxRate;
+        this.fee = fee;
         this.totalAmount = totalAmount;
     }
 
@@ -98,5 +100,13 @@ public class Transaction {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
         this.updateCostPerShare();
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
     }
 }
