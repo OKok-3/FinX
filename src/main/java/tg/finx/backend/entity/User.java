@@ -3,7 +3,7 @@ package tg.finx.backend.entity;
 import java.util.ArrayList;
 
 public class User {
-    private ArrayList<Account> accounts;
+    private final ArrayList<Account> accounts;
     private Account defaultAccount;
     private String userName;
     private String email;
@@ -17,7 +17,8 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.accounts = new ArrayList<>();
-        this.accounts.add(new Account("Default Account"));
+        this.defaultAccount = new Account("Default Account");
+        this.accounts.add(this.defaultAccount);
     }
 
     public ArrayList<Account> getAccounts() {
