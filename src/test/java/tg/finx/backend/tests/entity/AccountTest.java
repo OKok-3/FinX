@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import tg.finx.backend.entity.Account;
 import tg.finx.backend.entity.Transaction;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -14,6 +16,17 @@ class AccountTest {
     @BeforeEach
     void setUp() {
         account = new Account("test");
+        t = new Transaction(
+                LocalDateTime.now(),
+                "BUY",
+                "AAPL",
+                100.0,
+                "USD",
+                100,
+                1.3112,
+                0.0,
+                10000
+        );
     }
 
     @Test
