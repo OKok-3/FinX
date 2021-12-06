@@ -21,6 +21,7 @@ class TransactionTest {
                 "AAPL",
                 10.0,
                 "USD",
+                1000,
                 1.3122,
                 0.0,
                 10000.0
@@ -51,6 +52,7 @@ class TransactionTest {
     @Test
     void setShares() {
         t.setShares(100.0);
+        t.setCostPerShare(100.0);
         assertEquals(100.0, t.getShares());
         assertEquals(100.0, t.getCostPerShare());
     }
@@ -70,6 +72,7 @@ class TransactionTest {
     @Test
     void setTotalAmount() {
         t.setTotalAmount(9000);
+        t.setCostPerShare(900);
         assertEquals(9000.0, t.getTotalAmount());
         assertEquals(900, t.getCostPerShare());
     }
