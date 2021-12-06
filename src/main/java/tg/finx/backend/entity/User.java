@@ -28,7 +28,7 @@ public class User {
         this.accounts.add(account);
     }
 
-    public void deleteAccount(Account account) {
+    public void removeAccount(Account account) {
         this.accounts.remove(account);
     }
 
