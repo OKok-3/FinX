@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * THIS CLASS UTILIZES THE SINGLETON DESIGN PATTERN
  */
 public class AccountManager {
-    private static AccountManager AMInstance = null;
+    private static AccountManager AM_INSTANCE = null;
     private final AccountActionException invalidAccountException = new AccountActionException("Invalid Account: Account Is NULL");
 
     /**
@@ -25,9 +25,9 @@ public class AccountManager {
      * @return an instance of AccountManager
      */
     public static AccountManager getInstance() {
-        if (AMInstance == null) {
-            AMInstance = new AccountManager();
+        if (AM_INSTANCE == null) {
+            AM_INSTANCE = new AccountManager();
         }
-        return AMInstance;
+        return AM_INSTANCE;
     }
 }
