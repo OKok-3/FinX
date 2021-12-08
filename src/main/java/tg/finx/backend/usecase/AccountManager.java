@@ -56,7 +56,7 @@ public class AccountManager {
         } else if (t == null) {
             throw invalidTransactionException;
         }
-        if (!t.isPositiveFlow() || t.getTotalAmount() > act.getLiquidity()) {
+        if ((!t.isPositiveFlow()) && t.getTotalAmount() > act.getLiquidity()) {
             throw new AccountActionException("Invalid Transaction: Not Enough Liquidity In Account");
         }
         // Add or delete transaction depending on user action
