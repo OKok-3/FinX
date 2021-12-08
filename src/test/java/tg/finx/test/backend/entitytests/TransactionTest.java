@@ -24,7 +24,8 @@ class TransactionTest {
                 1000,
                 1.3122,
                 0.0,
-                10000.0
+                10000.0,
+                false
         );
     }
 
