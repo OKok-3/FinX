@@ -81,6 +81,27 @@ public class AccountManager {
         refreshAccountReturns(act);
     }
 
+    /**
+     * refreshes the account's total return and capital return
+     *
+     * @param act target Account
+     */
     public void refreshAccountReturns(Account act) throws AccountActionException {
+        // Check if account or transaction is invalid
+        if (act == null) {
+            throw invalidAccountException;
+        }
+        // Update capital return
+        double totalBuyAmt = 0.0;
+        double totalSellAmt = 0.0;
+        for (Transaction t : act.getTransactions()) {
+            switch(t.getType()) {
+                case "BUY": totalBuyAmt += t.getTotalAmount();
+                case "SELL": totalSellAmt += t.getTotalAmount();
+            }
+        }
+        act.setCapitalReturn(totalSellAmt - totalBuyAmt);
+        // Update total return
+        act.setTotalReturn(act.getCapitalReturn() + act.getTotalDividend());
     }
 }
