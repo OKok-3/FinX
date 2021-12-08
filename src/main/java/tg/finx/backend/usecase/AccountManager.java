@@ -4,8 +4,6 @@ import tg.finx.backend.entity.Account;
 import tg.finx.backend.entity.Transaction;
 import tg.finx.backend.exception.AccountActionException;
 
-import java.util.ArrayList;
-
 /**
  * THIS CLASS UTILIZES THE SINGLETON DESIGN PATTERN
  */
@@ -37,41 +35,52 @@ public class AccountManager {
     /**
      * adds the Transaction t to Account acc
      *
-     * @param acc the target Account object
+     * @param act the target Account object
      * @param t   the target Transaction object
      */
-    public void addTransaction(Account acc, Transaction t) throws AccountActionException {
+    public void moveTransaction(Account act, Transaction t, boolean isAddition) throws AccountActionException {
         // Check if account or transaction is invalid
-        if (acc == null) {
+        if (act == null) {
             throw invalidAccountException;
         } else if (t == null) {
             throw invalidTransactionException;
-        } if (!t.isPositiveFlow() || t.getTotalAmount() > acc.getLiquidity()) {
+        }
+        if (!t.isPositiveFlow() || t.getTotalAmount() > act.getLiquidity()) {
             throw new AccountActionException("Invalid Transaction: Not Enough Liquidity In Account");
         }
-        // If transaction object already exists, create a new one with same information
-        if (acc.getTransactions().contains(t)) {
-            acc.addTransaction(
-                    new Transaction(
-                            t.getTime(),
-                            t.getType(),
-                            t.getTicker(),
-                            t.getShares(),
-                            t.getCurrency(),
-                            t.getCostPerShare(),
-                            t.getFxRate(),
-                            t.getFee(),
-                            t.getTotalAmount(),
-                            t.isPositiveFlow()
-                    )
-            );
+        // Add or delete transaction depending on user action
+        if (isAddition) {
+            act.addTransaction(t);
         } else {
-            acc.addTransaction(t);
+            act.deleteTransaction(t);
         }
+
         // Update relevant metrics of the account
-        updateAccount(acc);
+        // Convert total amount to negative if it's a negative cash flow
+        double totalAmt = t.getTotalAmount();
+        if (!t.isPositiveFlow()) {
+            totalAmt = t.getTotalAmount() * -1;
+        }
+        // If it's deleting a transaction
+        if (!isAddition) {
+            totalAmt = totalAmt * -1;
+        }
+
+        // Update Liquidity and cash level of account
+        act.setLiquidity(act.getLiquidity() + totalAmt);
+        act.setCash(act.getCash() + totalAmt);
+        // Update amount invested based on transaction type
+        String type = t.getType();
+        if (type.equals("BUY") || type.equals("SELL")) {
+            act.setAmountInvested(act.getAmountInvested() + totalAmt);
+        }
+        // Update total dividend
+        if (t.getType().equals("DIV")) {
+            act.setTotalDividend(act.getTotalDividend() + totalAmt);
+        }
+        refreshAccountReturns(act);
     }
 
-    public void updateAccount(Account act) throws AccountActionException {
+    public void refreshAccountReturns(Account act) throws AccountActionException {
     }
 }
