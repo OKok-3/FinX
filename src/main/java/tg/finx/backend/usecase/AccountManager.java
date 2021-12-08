@@ -35,8 +35,9 @@ public class AccountManager {
     /**
      * adds the Transaction t to Account acc
      *
-     * @param act the target Account object
-     * @param t   the target Transaction object
+     * @param act        the target Account object
+     * @param t          the target Transaction object
+     * @param isAddition true if adding to account, false otherwise
      */
     public void moveTransaction(Account act, Transaction t, boolean isAddition) throws AccountActionException {
         // Check if account or transaction is invalid
@@ -95,9 +96,11 @@ public class AccountManager {
         double totalBuyAmt = 0.0;
         double totalSellAmt = 0.0;
         for (Transaction t : act.getTransactions()) {
-            switch(t.getType()) {
-                case "BUY": totalBuyAmt += t.getTotalAmount();
-                case "SELL": totalSellAmt += t.getTotalAmount();
+            switch (t.getType()) {
+                case "BUY":
+                    totalBuyAmt += t.getTotalAmount();
+                case "SELL":
+                    totalSellAmt += t.getTotalAmount();
             }
         }
         act.setCapitalReturn(totalSellAmt - totalBuyAmt);
