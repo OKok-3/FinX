@@ -12,6 +12,7 @@ public class Transaction {
     private double fee;
     private double costPerShare;
     private double totalAmount;
+    private final boolean positiveCashFlow;
 
     /**
      * Constructor of Transaction class. It calculates the costPerShare from totalAmount
@@ -24,7 +25,7 @@ public class Transaction {
      * @param fxRate      foreign exchange rate of transaction (if local currency, set to 1.0)
      * @param totalAmount total amount transacted
      */
-    public Transaction(LocalDateTime time, String type, String ticker, double shares, String currency, double costPerShare, double fxRate, double fee, double totalAmount) {
+    public Transaction(LocalDateTime time, String type, String ticker, double shares, String currency, double costPerShare, double fxRate, double fee, double totalAmount, boolean pCF) {
         this.time = time;
         this.type = type;
         this.ticker = ticker;
@@ -34,6 +35,7 @@ public class Transaction {
         this.fxRate = fxRate;
         this.fee = fee;
         this.totalAmount = totalAmount;
+        this.positiveCashFlow = pCF;
     }
 
     public LocalDateTime getTime() {
@@ -106,5 +108,9 @@ public class Transaction {
 
     public void setFee(double fee) {
         this.fee = fee;
+    }
+
+    public boolean getPositiveCashFlow() {
+        return this.positiveCashFlow;
     }
 }
