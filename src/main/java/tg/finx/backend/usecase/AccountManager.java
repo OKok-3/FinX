@@ -46,6 +46,8 @@ public class AccountManager {
             throw invalidAccountException;
         } else if (t == null) {
             throw invalidTransactionException;
+        } if (!t.isPositiveFlow() || t.getTotalAmount() > acc.getLiquidity()) {
+            throw new AccountActionException("Invalid Transaction: Not Enough Liquidity In Account");
         }
         // If transaction object already exists, create a new one with same information
         if (acc.getTransactions().contains(t)) {
@@ -60,7 +62,7 @@ public class AccountManager {
                             t.getFxRate(),
                             t.getFee(),
                             t.getTotalAmount(),
-                            t.getPositiveCashFlow()
+                            t.isPositiveFlow()
                     )
             );
         } else {
@@ -70,7 +72,6 @@ public class AccountManager {
         updateAccount(acc);
     }
 
-    public void updateAccount(Account account) throws AccountActionException {
-        // Determine if the latest transaction is a net out or net in
+    public void updateAccount(Account act) throws AccountActionException {
     }
 }
