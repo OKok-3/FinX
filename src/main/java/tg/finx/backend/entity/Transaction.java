@@ -12,7 +12,7 @@ public class Transaction {
     private double fee;
     private double costPerShare;
     private double totalAmount;
-    private final boolean positiveCashFlow;
+    private final boolean isPositiveFlow;
 
     /**
      * Constructor of Transaction class. It calculates the costPerShare from totalAmount
@@ -35,7 +35,7 @@ public class Transaction {
         this.fxRate = fxRate;
         this.fee = fee;
         this.totalAmount = totalAmount;
-        this.positiveCashFlow = pCF;
+        this.isPositiveFlow = pCF;
     }
 
     public LocalDateTime getTime() {
@@ -110,7 +110,7 @@ public class Transaction {
         this.fee = fee;
     }
 
-    public boolean getPositiveCashFlow() {
-        return this.positiveCashFlow;
+    public boolean isPositiveFlow() {
+        return this.isPositiveFlow;
     }
 }
