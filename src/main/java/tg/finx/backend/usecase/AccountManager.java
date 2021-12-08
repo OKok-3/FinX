@@ -11,12 +11,13 @@ import java.util.ArrayList;
  */
 public class AccountManager {
     private static AccountManager AM_INSTANCE = null;
-    private final AccountActionException invalidAccountException = new AccountActionException("Invalid Account: Account Is NULL");
+    private final AccountActionException invalidAccountException;
 
     /**
      * This is a private constructor method to ensure that there is only one account manager at any given time
      */
     private AccountManager() {
+        invalidAccountException = new AccountActionException("Invalid Account: Account Is NULL");
     }
 
     /**
@@ -30,4 +31,6 @@ public class AccountManager {
         }
         return AM_INSTANCE;
     }
+
+
 }
