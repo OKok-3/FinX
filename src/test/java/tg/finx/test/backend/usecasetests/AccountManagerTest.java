@@ -45,6 +45,7 @@ class AccountManagerTest {
         try {
             AM_INSTANCE.moveTransaction(act, t, true);
         } catch (AccountActionException a) {
+            a.printStackTrace();
             fail();
         }
 
@@ -57,6 +58,7 @@ class AccountManagerTest {
         try {
             AM_INSTANCE.moveTransaction(act, t, false);
         } catch (AccountActionException a) {
+            a.printStackTrace();
             fail();
         }
 
