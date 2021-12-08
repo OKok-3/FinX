@@ -59,7 +59,8 @@ public class AccountManager {
                             t.getCostPerShare(),
                             t.getFxRate(),
                             t.getFee(),
-                            t.getTotalAmount()
+                            t.getTotalAmount(),
+                            t.getPositiveCashFlow()
                     )
             );
         } else {
@@ -70,5 +71,6 @@ public class AccountManager {
     }
 
     public void updateAccount(Account account) throws AccountActionException {
+        // Determine if the latest transaction is a net out or net in
     }
 }
