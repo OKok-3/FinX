@@ -33,6 +33,16 @@ public class AccountManager {
     }
 
     /**
+     * creates a new Account object
+     *
+     * @param name name of the new Account
+     * @return the Account object created
+     */
+    public Account createNewAccount(String name) {
+        return new Account(name);
+    }
+
+    /**
      * adds the Transaction t to Account acc
      *
      * @param act        the target Account object
