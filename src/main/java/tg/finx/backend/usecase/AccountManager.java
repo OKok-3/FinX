@@ -118,6 +118,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the total return of Account
+     *
+     * @param act target Account
+     * @return Account's total return
+     */
+    public double getTotalRetOfAct(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getTotalReturn();
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
