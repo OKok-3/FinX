@@ -74,6 +74,8 @@ public class AccountManager {
     public void convertActToMargin(Account act, double marginAmt) throws AccountActionException {
         if (act == null) {
             throw invalidActException;
+        } else if (marginAmt < 0) {
+            throw new AccountActionException("Invalid Account Action: Margin Amount Cannot Be Negative");
         }
         act.setMargin(true);
         act.setMarginAmount(marginAmt);
