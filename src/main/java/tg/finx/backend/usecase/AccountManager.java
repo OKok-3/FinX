@@ -11,7 +11,7 @@ public class AccountManager {
      * Private constructor to forbid the use of "new" keyword
      */
     private AccountManager() {
-        invalidActException = new AccountActionException("Invalid Account Action: Account Is Null");
+        invalidActException = new AccountActionException("Account Is Null");
     }
 
     /**
@@ -140,7 +140,7 @@ public class AccountManager {
         if (act == null) {
             throw invalidActException;
         } else if (marginAmt < 0) {
-            throw new AccountActionException("Invalid Account Action: Margin Amount Cannot Be Negative");
+            throw new AccountActionException("Margin Amount Cannot Be Negative");
         }
         act.setMargin(true);
         act.setMarginAmount(marginAmt);
@@ -157,7 +157,7 @@ public class AccountManager {
             throw invalidActException;
         } else if (act.getLiquidity() < act.getMarginAmount()) {
             // check if the Account is able to convert to non-margin
-            throw new AccountActionException("Invalid Account Action: Insufficient Liquidity");
+            throw new AccountActionException("Insufficient Liquidity");
         }
         act.setMargin(false);
         act.setLiquidity(act.getLiquidity() - act.getMarginAmount());

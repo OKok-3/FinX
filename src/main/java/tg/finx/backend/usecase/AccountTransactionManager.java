@@ -11,7 +11,7 @@ public class AccountTransactionManager {
      * Private constructor to forbid the use of "new" keyword
      */
     private AccountTransactionManager() {
-        invalidActException = new AccountActionException("Invalid Account Action: Account Is Null");
+        invalidActException = new AccountActionException("Account Is Null");
     }
 
     /**
@@ -35,7 +35,7 @@ public class AccountTransactionManager {
         if (act == null) {
             throw invalidActException;
         } else if (amt < 0) {
-            throw new AccountActionException("Invalid Account Action: Deposit Amount Cannot Be Negative");
+            throw new AccountActionException("Deposit Amount Cannot Be Negative");
         }
         act.setCash(act.getCash() + amt);
         act.setLiquidity(act.getLiquidity() + amt);
@@ -51,9 +51,9 @@ public class AccountTransactionManager {
         if (act == null) {
             throw invalidActException;
         } else if (amt < 0) {
-            throw new AccountActionException("Invalid Account Action: Withdrawal Amount Cannot Be Negative");
+            throw new AccountActionException("Withdrawal Amount Cannot Be Negative");
         } else if (amt > act.getCash()) {
-            throw new AccountActionException("Invalid Account Action: Not Enough Cash");
+            throw new AccountActionException("Not Enough Cash");
         }
         act.setCash(act.getCash() - amt);
         act.setLiquidity(act.getLiquidity() - amt);
