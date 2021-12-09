@@ -66,6 +66,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the liquidity of Account
+     *
+     * @param act target Account
+     * @return Account's liquidity
+     */
+    public double getActLiquidity(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getLiquidity();
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
