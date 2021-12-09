@@ -92,6 +92,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the total dividend received of Account
+     *
+     * @param act target Account
+     * @return Account's total dividend received
+     */
+    public double getTotalDivOfAct(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getTotalDividend();
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
