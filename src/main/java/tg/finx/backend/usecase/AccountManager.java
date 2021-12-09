@@ -79,6 +79,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the remaining cash of Account
+     *
+     * @param act target Account
+     * @return Account's remaining cash
+     */
+    public double getActCashLvl(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getCash();
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
