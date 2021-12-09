@@ -98,4 +98,38 @@ public class AccountManager {
         act.setLiquidity(act.getLiquidity() - act.getMarginAmount());
         act.setMarginAmount(0.0);
     }
+
+    /**
+     * Deposits cash to Account
+     *
+     * @param act target Account
+     * @param amt deposit amount
+     */
+    public void depositToAccount(Account act, double amt) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        } else if (amt < 0) {
+            throw new AccountActionException("Invalid Account Action: Deposit Amount Cannot Be Negative");
+        }
+        act.setCash(act.getCash() + amt);
+        act.setLiquidity(act.getLiquidity() + amt);
+    }
+
+    /**
+     * Withdraws cash from Account
+     *
+     * @param act target Account
+     * @param amt withdrawal amount
+     */
+    public void withdrawFromAccount(Account act, double amt) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        } else if (amt < 0) {
+            throw new AccountActionException("Invalid Account Action: Withdrawal Amount Cannot Be Negative");
+        } else if (amt > act.getCash()) {
+            throw new AccountActionException("Invalid Account Action: Not Enough Cash");
+        }
+        act.setCash(act.getCash() - amt);
+        act.setLiquidity(act.getLiquidity() - amt);
+    }
 }
