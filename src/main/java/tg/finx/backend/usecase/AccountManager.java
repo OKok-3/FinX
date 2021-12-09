@@ -71,7 +71,7 @@ public class AccountManager {
      * @param act target Account
      * @return Account's liquidity
      */
-    public double getActLiquidity(Account act) throws AccountActionException {
+    public double getLiquidityOfAct(Account act) throws AccountActionException {
         if (act == null) {
             throw invalidActException;
         }
@@ -84,7 +84,7 @@ public class AccountManager {
      * @param act target Account
      * @return Account's remaining cash
      */
-    public double getActCashLvl(Account act) throws AccountActionException {
+    public double getCashLvlOfAct(Account act) throws AccountActionException {
         if (act == null) {
             throw invalidActException;
         }
