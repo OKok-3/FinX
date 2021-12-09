@@ -77,6 +77,7 @@ public class AccountManager {
         }
         act.setMargin(true);
         act.setMarginAmount(marginAmt);
+        act.setLiquidity(act.getLiquidity() + marginAmt);
     }
 
     /**
@@ -87,8 +88,12 @@ public class AccountManager {
     public void convertActToNonMargin(Account act) throws AccountActionException {
         if (act == null) {
             throw invalidActException;
+        } else if (act.getLiquidity() < act.getMarginAmount()) {
+            // check if the Account is able to convert to non-margin
+            throw new AccountActionException("Invalid Account Action: Insufficient Liquidity");
         }
         act.setMargin(false);
+        act.setLiquidity(act.getLiquidity() - act.getMarginAmount());
         act.setMarginAmount(0.0);
     }
 }
