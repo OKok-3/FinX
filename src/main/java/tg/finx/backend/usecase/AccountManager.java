@@ -105,6 +105,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the capital return of Account
+     *
+     * @param act target Account
+     * @return Account's capital return
+     */
+    public double getCapitalRetOfAct(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getCapitalReturn();
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
