@@ -4,14 +4,14 @@ import tg.finx.backend.entity.Account;
 import tg.finx.backend.entity.Transaction;
 import tg.finx.backend.exception.AccountActionException;
 
-public class AccountTransactionManager {
-    private static AccountTransactionManager ATM_INSTANCE = null;
+public class AccountTransactionAgent {
+    private static AccountTransactionAgent ATM_INSTANCE = null;
     private final AccountActionException invalidActException;
 
     /**
      * Private constructor to forbid the use of "new" keyword
      */
-    private AccountTransactionManager() {
+    private AccountTransactionAgent() {
         invalidActException = new AccountActionException("Account Is Null");
     }
 
@@ -20,9 +20,9 @@ public class AccountTransactionManager {
      *
      * @return an instance of AccountTransactionManager
      */
-    public AccountTransactionManager getInstance() {
+    public AccountTransactionAgent getInstance() {
         if (ATM_INSTANCE == null) {
-            ATM_INSTANCE = new AccountTransactionManager();
+            ATM_INSTANCE = new AccountTransactionAgent();
         }
         return ATM_INSTANCE;
     }
