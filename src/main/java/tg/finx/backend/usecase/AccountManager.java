@@ -131,6 +131,22 @@ public class AccountManager {
     }
 
     /**
+     * Increases the marginAmt of Account by amt
+     * 
+     * @param act target Account
+     * @param amt increase increment
+     */
+    public void increaseActMarginByAmt(Account act, double amt) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        } else if (amt < 0) {
+            throw new AccountActionException("Increase Increment Cannot Be Negative");
+        }
+        act.setLiquidity(act.getLiquidity() + amt);
+        act.setMarginAmount(act.getMarginAmount() + amt);
+    }
+
+    /**
      * Converts the Account to a margin account
      *
      * @param act       target Account
