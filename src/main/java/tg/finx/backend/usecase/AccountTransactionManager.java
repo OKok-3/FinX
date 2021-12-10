@@ -113,7 +113,32 @@ public class AccountTransactionManager {
 
     }
 
+    /**
+     * Get the total shares of a stock owned in the Account
+     * 
+     * @param act    target Account
+     * @param ticker ticker the stock
+     * @return total number of shares of stock owned, in a double object
+     */
     public double getTtlSharesOwnedInAct(Account act, String ticker) throws AccountActionException {
-        return 0.0;
+        if (act == null) {
+            throw invalidActException;
+        }
+        // Calcualte the amount of shares available to sell
+        double totalSharesOfStock = 0.0;
+        for (Transaction trans : act.getTransactions()) {
+            // If the transaction's ticker is the same as the required ticker
+            if (trans.getTicker().equals(ticker)) {
+                if (trans.getType() == "BUY") {
+                    // Increase count if it's a buy
+                    totalSharesOfStock += trans.getShares();
+                } else if (trans.getType() == "SELL") {
+                    // Decrease count if it's a sell
+                    totalSharesOfStock -= trans.getShares();
+                }
+            }
+        }
+
+        return totalSharesOfStock;
     }
 }
