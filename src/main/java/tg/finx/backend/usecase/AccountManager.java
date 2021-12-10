@@ -131,6 +131,19 @@ public class AccountManager {
     }
 
     /**
+     * Returns the margin amount of Account
+     * 
+     * @param act target Account
+     * @return the margin amount of Account
+     */
+    public double getMarginAmtOfAct(Account act) throws AccountActionException {
+        if (act == null) {
+            throw invalidActException;
+        }
+        return act.getMarginAmount();
+    }
+
+    /**
      * Increases the marginAmt of Account by amt
      * 
      * @param act target Account
