@@ -25,33 +25,30 @@ class TransactionTest {
                 1.3122,
                 0.0,
                 10000.0,
-                false
-        );
+                false);
     }
 
     @Test
-    void setTime() {
+    void TestSetTime() {
         LocalDateTime newTime = time.plusHours(4);
         t.setTime(newTime);
         assertEquals(newTime, t.getTime());
     }
 
     @Test
-    void setType() {
+    void TestSetType() {
         t.setType("SELL");
         assertEquals("SELL", t.getType());
     }
 
-
     @Test
-    void setTicker() {
+    void TestSetTicker() {
         t.setTicker("CNR.TO");
         assertEquals("CNR.TO", t.getTicker());
     }
 
-
     @Test
-    void setShares() {
+    void TestSetShares() {
         t.setShares(100.0);
         t.setCostPerShare(100.0);
         assertEquals(100.0, t.getShares());
@@ -59,19 +56,19 @@ class TransactionTest {
     }
 
     @Test
-    void setCurrency() {
+    void TestSetCurrency() {
         t.setCurrency("CAD");
         assertEquals("CAD", t.getCurrency());
     }
 
     @Test
-    void setFxRate() {
+    void TestSetFxRate() {
         t.setFxRate(1.0);
         assertEquals(1.0, t.getFxRate());
     }
 
     @Test
-    void setTotalAmount() {
+    void TestSetTotalAmount() {
         t.setTotalAmount(9000);
         t.setCostPerShare(900);
         assertEquals(9000.0, t.getTotalAmount());
@@ -79,7 +76,7 @@ class TransactionTest {
     }
 
     @Test
-    void setFee() {
+    void TestSetFee() {
         t.setFee(4.99);
         assertEquals(4.99, t.getFee());
     }

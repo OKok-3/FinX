@@ -26,102 +26,101 @@ class AccountTest {
                 1.3112,
                 0.0,
                 10000,
-                false
-        );
+                false);
     }
 
     @Test
-    void getTransactions() {
+    void TestGetTransactions() {
         assertEquals(0, account.getTransactions().size());
     }
 
     @Test
-    void addTransaction() {
+    void TestAddTransaction() {
         account.addTransaction(t);
         assertEquals(t, account.getTransactions().get(0));
         assertEquals(1, account.getTransactions().size());
     }
 
     @Test
-    void deleteTransaction() {
+    void TestDeleteTransaction() {
         account.addTransaction(t);
         account.deleteTransaction(t);
         assertEquals(0, account.getTransactions().size());
     }
 
     @Test
-    void isMargin() {
+    void TestIsMargin() {
         assertFalse(account.isMargin());
     }
 
     @Test
-    void setMargin() {
+    void TestSetMargin() {
         account.setMargin(true);
         assertTrue(account.isMargin());
     }
 
     @Test
-    void getMarginAmount() {
+    void TestGetMarginAmount() {
         assertEquals(0.0, account.getMarginAmount());
     }
 
     @Test
-    void setMarginAmount() {
+    void TestSetMarginAmount() {
         account.setMarginAmount(100);
         assertEquals(100, account.getMarginAmount());
     }
 
     @Test
-    void getLiquidity() {
+    void TestGetLiquidity() {
         assertEquals(0, account.getLiquidity());
     }
 
     @Test
-    void setLiquidity() {
+    void TestSetLiquidity() {
         account.setLiquidity(1000);
         assertEquals(1000, account.getLiquidity());
     }
 
     @Test
-    void getCash() {
+    void TestGetCash() {
         assertEquals(0, account.getCash());
     }
 
     @Test
-    void setCash() {
+    void TestSetCash() {
         account.setCash(10);
         assertEquals(10, account.getCash());
     }
 
     @Test
-    void getAmountInvested() {
+    void TestGetAmountInvested() {
         assertEquals(0, account.getAmountInvested());
     }
 
     @Test
-    void setAmountInvested() {
+    void TestSetAmountInvested() {
         account.setAmountInvested(100);
         assertEquals(100, account.getAmountInvested());
     }
 
     @Test
-    void getTotalDividend() {
+    void TestGetTotalDividend() {
         assertEquals(0, account.getTotalDividend());
     }
 
     @Test
-    void setTotalDividend() {
+    void TestSetTotalDividend() {
         account.setTotalDividend(1);
         assertEquals(1, account.getTotalDividend());
     }
 
     @Test
-    void getName() {
+    void TestGetName() {
         assertEquals("test", account.getName());
     }
 
     @Test
-    void setName() {
+    void TestSetName() {
         account.setName("test 2");
         assertEquals("test 2", account.getName());
     }
