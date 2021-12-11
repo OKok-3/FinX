@@ -37,18 +37,18 @@ public class AccountTransactionAgentTest {
     @Test
     void TestSingleton() {
         AccountTransactionAgent ATA_2 = getInstance();
-        assertEquals(ATA, ATA);
+        assertEquals(ATA, ATA_2);
     }
 
     @Test
     void TestDepositWithdrawal() {
-        int iteration = rand.nextInt(10) + 25;
+        int iteration = rand.nextInt(1000) + 150;
         double expectedCash = 0.0;
         double expectedLiquidity = 0.0;
 
         for (int i = 0; i < iteration; i++) {
             double amt = rand.nextDouble() * (rand.nextInt(1000) * 10);
-            if (rand.nextInt(1) == 1) {
+            if (rand.nextInt(2) == 1) {
                 try {
                     ATA.depositToAccount(act, amt);
                     expectedCash += amt;
