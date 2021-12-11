@@ -8,3 +8,6 @@ bin/
 
 # VS Code files
 .vscode/
+
+# IntelliJ files
+.idea/
