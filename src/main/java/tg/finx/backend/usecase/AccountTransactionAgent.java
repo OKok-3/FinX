@@ -91,6 +91,62 @@ public class AccountTransactionAgent {
     }
 
     /**
+     * Updates the metrics of the account based on user action on a Transaction
+     * 
+     * @param act        target Account
+     * @param t          Transaction of concern
+     * @param isAddition whether it's addint the Transaction into Account or
+     *                   deleting it from Account
+     */
+    private void updateActMetrics(Account act, Transaction t, boolean isAddition) throws AccountActionException {
+        int factor = 1;
+        if (!isAddition) {
+            factor = -1;
+        }
+
+        double totalAmt = t.getTotalAmount() * factor;
+
+        // Check if there is sufficient shares to complete the transaction
+        if (isAddition && t.getType() == "SELL") {
+            // Check if there are enough shares to be sold
+            if (t.getShares() > this.getTtlSharesOwnedInAct(act, t.getTicker())) {
+                throw new AccountActionException("Insufficient Shares of " + t.getTicker());
+            }
+        } else if (!isAddition && t.getType() == "BUY") {
+            // Throws an exception if somehow there isn't enough shares left
+            if (t.getShares() > this.getTtlSharesOwnedInAct(act, t.getTicker())) {
+                throw new AccountActionException("Insufficient Shares of " + t.getTicker());
+            }
+        }
+
+        // Switch case to deal with various types of transactions
+        switch (t.getType()) {
+            case "BUY":
+                // Intentional fall through
+                act.setAmountInvested(act.getAmountInvested() + totalAmt);
+            case "TAX":
+            case "FEE":
+                act.setLiquidity(act.getLiquidity() - totalAmt);
+                act.setCash(act.getCash() - totalAmt);
+                break;
+            case "SELL":
+                act.setLiquidity(act.getLiquidity() + totalAmt);
+                act.setCash(act.getCash() + totalAmt);
+                act.setAmountInvested(act.getAmountInvested() - totalAmt);
+                break;
+            case "DIV":
+                // This is intentionally letting it to fall through because it shares the
+                // instructions as the following two cases
+                act.setTotalDividend(act.getTotalDividend() + totalAmt);
+            case "REFER":
+            case "CONT":
+                act.setLiquidity(act.getLiquidity() + totalAmt);
+                act.setCash(act.getCash() + totalAmt);
+                break;
+        }
+    }
+
+    /**
      * Adds Transaction t to Account act
      * 
      * @param act target Account
@@ -110,35 +166,6 @@ public class AccountTransactionAgent {
             throw new AccountActionException("Insufficient Liquidity");
         }
 
-        // Switch case to deal with various types of transactions
-        switch (t.getType()) {
-            case "BUY":
-                // Intentional fall through
-                act.setAmountInvested(act.getAmountInvested() + t.getTotalAmount());
-            case "TAX":
-            case "FEE":
-                act.setLiquidity(act.getLiquidity() - t.getTotalAmount());
-                act.setCash(act.getCash() - t.getTotalAmount());
-                break;
-            case "SELL":
-                // Check if there are enough shares to be sold
-                if (t.getShares() > this.getTtlSharesOwnedInAct(act, t.getTicker())) {
-                    throw new AccountActionException("Insufficient Shares");
-                }
-                act.setLiquidity(act.getLiquidity() + t.getTotalAmount());
-                act.setCash(act.getCash() + t.getTotalAmount());
-                act.setAmountInvested(act.getAmountInvested() - t.getTotalAmount());
-                break;
-            case "DIV":
-                // This is intentionally letting it to fall through because it shares the
-                // instructions as the following two cases
-                act.setTotalDividend(act.getTotalDividend() + t.getTotalAmount());
-            case "REFER":
-            case "CONT":
-                act.setLiquidity(act.getLiquidity() + t.getTotalAmount());
-                act.setCash(act.getCash() + t.getTotalAmount());
-                break;
-        }
-
+        updateActMetrics(act, t, true);
     }
 }
