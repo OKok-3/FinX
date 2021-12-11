@@ -168,4 +168,23 @@ public class AccountTransactionAgent {
 
         updateActMetrics(act, t, true);
     }
+
+    /**
+     * Deletes a Transaction from Account
+     * 
+     * @param act target Account
+     * @param t   the Transaction that is going to be deleted
+     */
+    public void deleteTransaction(Account act, Transaction t) throws AccountActionException {
+        // Throw exceptions if the following errors occur
+        if (act == null) {
+            throw invalidActException;
+        } else if (t == null) {
+            throw new AccountActionException("Transaction Is Null");
+        } else if (!act.getTransactions().contains(t)) {
+            throw new AccountActionException("Transaction Not In Account " + act.getName());
+        }
+
+        updateActMetrics(act, t, false);
+    }
 }
