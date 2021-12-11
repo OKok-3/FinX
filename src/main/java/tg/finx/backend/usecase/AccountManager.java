@@ -27,6 +27,16 @@ public class AccountManager {
     }
 
     /**
+     * This methods returns a new Account object. Use this to create new Accounts
+     * 
+     * @param name name of Account
+     * @return an Account object with the give name
+     */
+    public Account createAccount(String name) {
+        return new Account(name);
+    }
+
+    /**
      * Get the name of the Account
      *
      * @param act target Account
