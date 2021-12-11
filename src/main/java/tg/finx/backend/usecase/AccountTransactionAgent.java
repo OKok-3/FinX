@@ -5,7 +5,7 @@ import tg.finx.backend.entity.Transaction;
 import tg.finx.backend.exception.AccountActionException;
 
 public class AccountTransactionAgent {
-    private static AccountTransactionAgent ATM_INSTANCE = null;
+    private static AccountTransactionAgent ATA_INSTANCE = null;
     private final AccountActionException invalidActException;
 
     /**
@@ -21,10 +21,10 @@ public class AccountTransactionAgent {
      * @return an instance of AccountTransactionManager
      */
     public AccountTransactionAgent getInstance() {
-        if (ATM_INSTANCE == null) {
-            ATM_INSTANCE = new AccountTransactionAgent();
+        if (ATA_INSTANCE == null) {
+            ATA_INSTANCE = new AccountTransactionAgent();
         }
-        return ATM_INSTANCE;
+        return ATA_INSTANCE;
     }
 
     /**
