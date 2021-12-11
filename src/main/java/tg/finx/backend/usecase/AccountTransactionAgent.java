@@ -20,7 +20,7 @@ public class AccountTransactionAgent {
      *
      * @return an instance of AccountTransactionManager
      */
-    public AccountTransactionAgent getInstance() {
+    public static AccountTransactionAgent getInstance() {
         if (ATA_INSTANCE == null) {
             ATA_INSTANCE = new AccountTransactionAgent();
         }
