@@ -27,7 +27,7 @@ public class AccountManager {
     }
 
     /**
-     * This methods returns a new Account object. Use this to create new Accounts
+     * This method returns a new Account object. Use this to create new Accounts
      * 
      * @param name name of Account
      * @return an Account object with the give name
@@ -63,7 +63,7 @@ public class AccountManager {
     }
 
     /**
-     * Get whether the Account is margin accuont or not
+     * Get whether the Account is margin account or not
      *
      * @param act target account
      * @return true if the Account is margin, false otherwise

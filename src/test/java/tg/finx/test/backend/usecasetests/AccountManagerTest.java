@@ -57,12 +57,12 @@ class AccountManagerTest {
     }
 
     @Test
-    void TestGetCapitalRetOfActt() throws AccountActionException {
+    void TestGetCapitalRetOfAct() throws AccountActionException {
         assertEquals(0.0, AM_INSTANCE.getCapitalRetOfAct(act));
     }
 
     @Test
-    void TestGetTotalRetOfActt() throws AccountActionException {
+    void TestGetTotalRetOfAct() throws AccountActionException {
         assertEquals(0.0, AM_INSTANCE.getTotalRetOfAct(act));
     }
 
@@ -79,7 +79,7 @@ class AccountManagerTest {
             AM_INSTANCE.convertActToMargin(act, 100);
             AM_INSTANCE.decreaseActMarginByAmt(act, 100);
             assertEquals(0.0, AM_INSTANCE.getMarginAmtOfAct(act));
-            // The line below should not run without errors, if it doesn the test fails
+            // The line below should not run without errors, if it doesn't the test fails
             AM_INSTANCE.decreaseActMarginByAmt(act, 1);
             fail();
         } catch (AccountActionException ignored) {
@@ -95,12 +95,12 @@ class AccountManagerTest {
     }
 
     @Test
-    void TestConverActToNonMargin() {
+    void TestConvertActToNonMargin() {
         try {
             AM_INSTANCE.convertActToMargin(act, 100.0);
             act.setLiquidity(99);
             AM_INSTANCE.convertActToNonMargin(act);
-            // It should never reach the fail line If it doesn, it means that the account
+            // It should never reach the fail line If it doesn't, it means that the account
             // now has a negative liquidity, which is not allowed
             fail();
         } catch (AccountActionException ignored) {

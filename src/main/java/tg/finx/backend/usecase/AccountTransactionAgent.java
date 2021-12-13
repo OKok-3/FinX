@@ -95,7 +95,7 @@ public class AccountTransactionAgent {
      *
      * @param act        target Account
      * @param t          Transaction of concern
-     * @param isAddition whether it's addint the Transaction into Account or
+     * @param isAddition whether it's adding the Transaction into Account or
      *                   deleting it from Account
      */
     private void updateActMetrics(Account act, Transaction t, boolean isAddition) throws AccountActionException {
@@ -135,7 +135,7 @@ public class AccountTransactionAgent {
                 act.setAmountInvested(act.getAmountInvested() - totalAmt);
                 break;
             case "DIV":
-                // This is intentionally letting it to fall through because it shares the
+                // This is intentionally letting it fall through because it shares the
                 // instructions as the following two cases
                 act.setTotalDividend(act.getTotalDividend() + totalAmt);
             case "REFER":
