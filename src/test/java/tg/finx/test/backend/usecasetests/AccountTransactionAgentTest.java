@@ -16,7 +16,7 @@ import tg.finx.backend.usecase.AccountTransactionAgent;
 import tg.finx.backend.entity.Transaction;
 import tg.finx.backend.exception.AccountActionException;
 
-public class AccountTransactionAgentTest {
+class AccountTransactionAgentTest {
     static AccountTransactionAgent ATA;
     static AccountManager AM;
     Account act;
