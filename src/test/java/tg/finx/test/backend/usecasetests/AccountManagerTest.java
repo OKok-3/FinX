@@ -83,7 +83,7 @@ class AccountManagerTest {
             // The line below should not run without errors, if it doesn the test fails
             AM_INSTANCE.decreaseActMarginByAmt(act, 1);
             fail();
-        } catch (AccountActionException a) {
+        } catch (AccountActionException ignored) {
 
         }
 
@@ -104,7 +104,7 @@ class AccountManagerTest {
             // It should never reach the fail line If it doesn, it means that the account
             // now has a negative liquidity, which is not allowed
             fail();
-        } catch (AccountActionException a) {
+        } catch (AccountActionException ignored) {
         }
     }
 }
