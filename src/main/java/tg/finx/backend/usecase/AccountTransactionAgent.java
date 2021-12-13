@@ -72,7 +72,7 @@ public class AccountTransactionAgent {
         if (act == null) {
             throw invalidActException;
         }
-        // Calcualte the amount of shares available to sell
+        // Calculate the amount of shares available to sell
         double totalSharesOfStock = 0.0;
         for (Transaction trans : act.getTransactions()) {
             // If the transaction's ticker is the same as the required ticker
@@ -185,7 +185,7 @@ public class AccountTransactionAgent {
         } else if (!act.getTransactions().contains(t)) {
             throw new AccountActionException("Transaction Not In Account " + act.getName());
         }
-        
+
         // We are not performing any more error checking because the if the Transaction is already in the Account, it
         // means that it's a valid transaction to be included in the Account. So it would also be valid to delete it
         // from the Account
