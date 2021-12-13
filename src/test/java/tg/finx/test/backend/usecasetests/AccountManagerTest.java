@@ -1,7 +1,6 @@
 package tg.finx.test.backend.usecasetests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static tg.finx.backend.usecase.AccountManager.getInstance;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -39,7 +38,7 @@ class AccountManagerTest {
 
     @Test
     void TestAccountIsMargin() throws AccountActionException {
-        assertEquals(false, AM_INSTANCE.accountIsMargin(act));
+        assertFalse(AM_INSTANCE.accountIsMargin(act));
     }
 
     @Test
@@ -92,7 +91,7 @@ class AccountManagerTest {
     @Test
     void TestConvertActToMargin() throws AccountActionException {
         AM_INSTANCE.convertActToMargin(act, 1000.0);
-        assertEquals(true, AM_INSTANCE.accountIsMargin(act));
+        assertTrue(AM_INSTANCE.accountIsMargin(act));
     }
 
     @Test
