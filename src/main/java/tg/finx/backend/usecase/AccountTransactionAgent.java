@@ -63,7 +63,7 @@ public class AccountTransactionAgent {
 
     /**
      * Get the total shares of a stock owned in the Account
-     * 
+     *
      * @param act    target Account
      * @param ticker ticker the stock
      * @return total number of shares of stock owned, in a double object
@@ -92,7 +92,7 @@ public class AccountTransactionAgent {
 
     /**
      * Updates the metrics of the account based on user action on a Transaction
-     * 
+     *
      * @param act        target Account
      * @param t          Transaction of concern
      * @param isAddition whether it's addint the Transaction into Account or
@@ -148,7 +148,7 @@ public class AccountTransactionAgent {
 
     /**
      * Adds Transaction t to Account act
-     * 
+     *
      * @param act target Account
      * @param t   target Transaction
      */
@@ -166,12 +166,13 @@ public class AccountTransactionAgent {
             throw new AccountActionException("Insufficient Liquidity");
         }
 
+        act.addTransaction(t);
         updateActMetrics(act, t, true);
     }
 
     /**
      * Deletes a Transaction from Account
-     * 
+     *
      * @param act target Account
      * @param t   the Transaction that is going to be deleted
      */
@@ -185,6 +186,7 @@ public class AccountTransactionAgent {
             throw new AccountActionException("Transaction Not In Account " + act.getName());
         }
 
+        act.deleteTransaction(t);
         updateActMetrics(act, t, false);
     }
 }
