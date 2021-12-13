@@ -77,10 +77,10 @@ public class AccountTransactionAgent {
         for (Transaction trans : act.getTransactions()) {
             // If the transaction's ticker is the same as the required ticker
             if (trans.getTicker().equals(ticker)) {
-                if (trans.getType() == "BUY") {
+                if (trans.getType().equals("BUY")) {
                     // Increase count if it's a buy
                     totalSharesOfStock += trans.getShares();
-                } else if (trans.getType() == "SELL") {
+                } else if (trans.getType().equals("SELL")) {
                     // Decrease count if it's a sell
                     totalSharesOfStock -= trans.getShares();
                 }
@@ -107,12 +107,12 @@ public class AccountTransactionAgent {
         double totalAmt = t.getTotalAmount() * factor;
 
         // Check if there is sufficient shares to complete the transaction
-        if (isAddition && t.getType() == "SELL") {
+        if (isAddition && t.getType().equals("SELL")) {
             // Check if there are enough shares to be sold
             if (t.getShares() > this.getTtlSharesOwnedInAct(act, t.getTicker())) {
                 throw new AccountActionException("Insufficient Shares of " + t.getTicker());
             }
-        } else if (!isAddition && t.getType() == "BUY") {
+        } else if (!isAddition && t.getType().equals("BUY")) {
             // Throws an exception if somehow there isn't enough shares left
             if (t.getShares() > this.getTtlSharesOwnedInAct(act, t.getTicker())) {
                 throw new AccountActionException("Insufficient Shares of " + t.getTicker());
