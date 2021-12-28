@@ -111,7 +111,7 @@ public class TransactionManager {
      * Gets the type of the Transaction
      *
      * @param t target Transaction
-     * @return the time of the Transaction as LocalDateTime object
+     * @return the type of the Transaction as String object
      * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
      */
     public String getTypeOfTransaction(Transaction t) throws TransactionManagerExceptions {
