@@ -188,4 +188,22 @@ public class TransactionManager {
 
         return t.getShares();
     }
+
+    /**
+     * Sets (or changes) the number of shares of the Transaction
+     *
+     * @param t      target Transaction
+     * @param shares the new number of shares for the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction is null or number of shares is negative
+     */
+    public void setSharesOfTransaction(Transaction t, double shares) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        } else if (shares < 0) {
+            throw new TransactionManagerExceptions("Number of Shares Must Be Non-Negative");
+        }
+
+        t.setShares(shares);
+    }
 }
