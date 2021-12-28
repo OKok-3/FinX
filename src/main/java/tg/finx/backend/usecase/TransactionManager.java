@@ -89,4 +89,20 @@ public class TransactionManager {
 
         return t.getTime();
     }
+
+    /**
+     * Sets (or changes) the time of the Transaction
+     *
+     * @param t    target Transaction
+     * @param time the new time for the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public void setTimeOfTransaction(Transaction t, LocalDateTime time) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        t.setTime(time);
+    }
 }
