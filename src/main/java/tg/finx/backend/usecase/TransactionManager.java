@@ -122,4 +122,22 @@ public class TransactionManager {
 
         return t.getType();
     }
+
+    /**
+     * Sets (or changes) the type of the Transaction
+     *
+     * @param t    target Transaction
+     * @param type the new type for the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction is null or when the type is not supported
+     */
+    public void setTypeOfTransaction(Transaction t, String type) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        } else if (!negativeFlowTypes.contains(type) && !positiveFlowTypes.contains(type)) {
+            throw new TransactionManagerExceptions("Type Not Supported");
+        }
+
+        t.setType(type);
+    }
 }
