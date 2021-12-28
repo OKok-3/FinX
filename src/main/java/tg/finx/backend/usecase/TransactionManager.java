@@ -156,4 +156,20 @@ public class TransactionManager {
 
         return t.getTicker();
     }
+
+    /**
+     * Sets (or changes) the ticker of the Transaction
+     *
+     * @param t      target Transaction
+     * @param ticker the new ticker for the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction is null
+     */
+    public void setTickerOfTransaction(Transaction t, String ticker) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        t.setTicker(ticker);
+    }
 }
