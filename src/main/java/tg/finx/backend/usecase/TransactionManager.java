@@ -222,4 +222,20 @@ public class TransactionManager {
 
         return t.getCurrency();
     }
+
+    /**
+     * Sets (or changes) the currency of the Transaction
+     *
+     * @param t        target Transaction
+     * @param currency the new currency of the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction passed in is null
+     */
+    public void setCurrencyOfTransaction(Transaction t, String currency) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        t.setCurrency(currency);
+    }
 }
