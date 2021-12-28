@@ -105,4 +105,21 @@ public class TransactionManager {
 
         t.setTime(time);
     }
+
+
+    /**
+     * Gets the type of the Transaction
+     *
+     * @param t target Transaction
+     * @return the time of the Transaction as LocalDateTime object
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public String getType(Transaction t) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        return t.getType();
+    }
 }
