@@ -172,4 +172,20 @@ public class TransactionManager {
 
         t.setTicker(ticker);
     }
+
+    /**
+     * Gets the number of shares of the Transaction
+     *
+     * @param t target Transaction
+     * @return the number of shares of the Transaction as a double object
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public double getSharesOfTransaction(Transaction t) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        return t.getShares();
+    }
 }
