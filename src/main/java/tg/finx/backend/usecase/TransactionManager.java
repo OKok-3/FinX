@@ -206,4 +206,20 @@ public class TransactionManager {
 
         t.setShares(shares);
     }
+
+    /**
+     * Gets the currency of the Transaction
+     *
+     * @param t target Transaction
+     * @return the currency of the Transaction as a String object
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public String getCurrencyOfTransaction(Transaction t) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        return t.getCurrency();
+    }
 }
