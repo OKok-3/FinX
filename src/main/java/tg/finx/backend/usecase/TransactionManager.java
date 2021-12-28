@@ -31,6 +31,20 @@ public class TransactionManager {
         return TM;
     }
 
+    /**
+     * Create a Transaction object
+     *
+     * @param time        the time of Transaction
+     * @param type        the type of Transaction
+     * @param ticker      the ticker of the security, if cash enter CONT/WITH
+     * @param shares      number of shares involved in the Transaction
+     * @param currency    the currency of the Transaction
+     * @param fxRate      the FX Rate applied to this Transaction, if applicable
+     * @param fee         the fee incurred for this Transaction
+     * @param totalAmount the total amount of this Transaction (including fees)
+     * @return a Transaction object
+     * @throws TransactionManagerExceptions when the type is not supported or number of shares is negative
+     */
     public Transaction createTransaction(LocalDateTime time,
                                          String type,
                                          String ticker,
@@ -52,7 +66,7 @@ public class TransactionManager {
                 ticker,
                 shares,
                 currency,
-                totalAmount/shares,
+                totalAmount / shares,
                 fxRate,
                 fee,
                 totalAmount,
