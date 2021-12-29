@@ -12,7 +12,7 @@ public class Transaction {
     private double fee;
     private double costPerShare;
     private double totalAmount;
-    private final boolean isPositiveFlow;
+    private boolean isPositiveFlow;
 
     /**
      * Constructor of Transaction class. It calculates the costPerShare from totalAmount
@@ -113,4 +113,6 @@ public class Transaction {
     public boolean isPositiveFlow() {
         return this.isPositiveFlow;
     }
+
+    public void updatePositiveFlow(boolean pCF) {this.isPositiveFlow = pCF;}
 }
