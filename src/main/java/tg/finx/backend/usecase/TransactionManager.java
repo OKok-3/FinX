@@ -139,6 +139,7 @@ public class TransactionManager {
         }
 
         t.setType(type);
+        t.updatePositiveFlow(positiveFlowTypes.contains(type));
     }
 
     /**
