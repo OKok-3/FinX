@@ -254,4 +254,22 @@ public class TransactionManager {
 
         return t.getFxRate();
     }
+
+    /**
+     * Sets (or changes) the currency of the Transaction
+     *
+     * @param t      target Transaction
+     * @param fxRate the new FX rate of the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction passed in is null or the FX rate is negative
+     */
+    public void setFXRateOfTransaction(Transaction t, double fxRate) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        } else if (fxRate < 0) {
+            throw new TransactionManagerExceptions("FX Rate Must Be Non-Negative");
+        }
+
+        t.setFxRate(fxRate);
+    }
 }
