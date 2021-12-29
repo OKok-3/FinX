@@ -341,4 +341,27 @@ public class TransactionManager {
 
         return t.getFee();
     }
+
+    /**
+     * Sets (or changes) the fee amount of the Transaction
+     *
+     * @param t   target Transaction
+     * @param fee the new fee amount of the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction passed in is null or the fee amount is negative
+     */
+    public void setFeeOfTransaction(Transaction t, double fee) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        } else if (fee < 0) {
+            throw new TransactionManagerExceptions("Fee Amount Must Be Non-Negative");
+        }
+
+        // Set the fee amount
+        t.setFee(fee);
+        // Update the total amount
+        t.setTotalAmount(t.getTotalAmount() + fee);
+        // Update cost per share
+        t.setCostPerShare(t.getTotalAmount() / t.getShares());
+    }
 }
