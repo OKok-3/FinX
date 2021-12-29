@@ -304,4 +304,25 @@ public class TransactionManager {
 
         return t.getTotalAmount();
     }
+
+    /**
+     * Sets (or changes) the currency of the Transaction
+     *
+     * @param t   target Transaction
+     * @param amt the new total amount of the target Transaction
+     * @throws TransactionManagerExceptions when the Transaction passed in is null or the total amount is negative
+     */
+    public void setTtlAmtOfTransaction(Transaction t, double amt) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        } else if (amt < 0) {
+            throw new TransactionManagerExceptions("Amount Must Be Non-Negative");
+        }
+
+        // Set the total amount
+        t.setTotalAmount(amt);
+        // Update the cost per share
+        t.setCostPerShare(amt / t.getShares());
+    }
 }
