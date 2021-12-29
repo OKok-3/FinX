@@ -3,4 +3,11 @@
 
 # Gradle files
 .gradle/
-/build/
+build/
+bin/
+
+# VS Code files
+.vscode/
+
+# IntelliJ files
+.idea/

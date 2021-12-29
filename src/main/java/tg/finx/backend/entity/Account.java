@@ -3,6 +3,7 @@ package tg.finx.backend.entity;
 import java.util.ArrayList;
 
 public class Account {
+    private String name;
     private final ArrayList<Transaction> transactions;
     private boolean isMargin;
     private double marginAmount;
@@ -10,13 +11,15 @@ public class Account {
     private double cash;
     private double amountInvested;
     private double totalDividend;
-    private String name;
+    private double capitalReturn;
+    private double totalReturn;
 
     /**
      * Constructor of Account. It will return a non-margin empty account when called
      * @param name the name of the account
      */
     public Account(String name) {
+        this.name = name;
         this.transactions = new ArrayList<>();
         this.isMargin = false;
         this.marginAmount = 0.0;
@@ -24,7 +27,8 @@ public class Account {
         this.cash = 0.0;
         this.amountInvested = 0.0;
         this.totalDividend = 0.0;
-        this.name = name;
+        this.capitalReturn = 0.0;
+        this.totalReturn = 0.0;
     }
 
     public ArrayList<Transaction> getTransactions() {
@@ -93,5 +97,21 @@ public class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getCapitalReturn() {
+        return this.capitalReturn;
+    }
+
+    public void setCapitalReturn(double newCapitalReturn) {
+        this.capitalReturn = newCapitalReturn;
+    }
+
+    public void setTotalReturn(double newTotalReturn) {
+        this.totalReturn = newTotalReturn;
+    }
+
+    public double getTotalReturn() {
+        return this.totalReturn;
     }
 }

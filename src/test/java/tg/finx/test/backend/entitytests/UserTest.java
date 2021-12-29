@@ -1,4 +1,4 @@
-package tg.finx.backend.tests.entity;
+package tg.finx.test.backend.entitytests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,20 +18,20 @@ class UserTest {
     }
 
     @Test
-    void getAccounts() {
+    void TestGetAccounts() {
         assertEquals(1, user.getAccounts().size());
         assertEquals("Default Account", user.getAccounts().get(0).getName());
     }
 
     @Test
-    void addAccount() {
+    void TestAddAccount() {
         user.addAccount(account);
         assertEquals(2, user.getAccounts().size());
         assertTrue(user.getAccounts().contains(account));
     }
 
     @Test
-    void removeAccount() {
+    void TestRemoveAccount() {
         System.out.println(user.getDefaultAccount());
         user.removeAccount(user.getDefaultAccount());
         System.out.println(user.getDefaultAccount());
@@ -39,20 +39,20 @@ class UserTest {
     }
 
     @Test
-    void setDefaultAccount() {
+    void TestSetDefaultAccount() {
         user.addAccount(account);
         user.setDefaultAccount(account);
         assertEquals("test account", user.getDefaultAccount().getName());
     }
 
     @Test
-    void setUserName() {
+    void TestSetUserName() {
         user.setUserName("new name");
         assertEquals("new name", user.getUserName());
     }
 
     @Test
-    void setEmail() {
+    void TestSetEmail() {
         user.setEmail("test2@gmail.com");
         assertEquals("test2@gmail.com", user.getEmail());
     }
