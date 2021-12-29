@@ -238,4 +238,20 @@ public class TransactionManager {
 
         t.setCurrency(currency);
     }
+
+    /**
+     * Gets the FX rate of the Transaction
+     *
+     * @param t target Transaction
+     * @return the FX rate of the Transaction as a double object
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public double getFXRateOfTransaction(Transaction t) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        return t.getFxRate();
+    }
 }
