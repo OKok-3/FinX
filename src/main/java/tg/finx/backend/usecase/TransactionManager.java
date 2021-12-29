@@ -325,4 +325,20 @@ public class TransactionManager {
         // Update the cost per share
         t.setCostPerShare(amt / t.getShares());
     }
+
+    /**
+     * Gets the fee amount of the Transaction
+     *
+     * @param t target Transaction
+     * @return the fee amount of the Transaction as a double object
+     * @throws TransactionManagerExceptions when the Transaction passed in as argument is null
+     */
+    public double getFeeOfTransaction(Transaction t) throws TransactionManagerExceptions {
+        // Check if the Transaction passed in is null
+        if (t == null) {
+            throw new TransactionManagerExceptions("Transaction Cannot Be Null");
+        }
+
+        return t.getFee();
+    }
 }
